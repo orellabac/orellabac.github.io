@@ -23,13 +23,23 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
     
     <textarea id="editor" name="editor" class="form-control">
-       CREATE PROCEDURE FOO()
-       RETURN STRING
-       LANGUAGE SQL
-       AS 
-       $$
-          INSERT INTO TEMP(col1) VALUES(1,2);
-       $$
+CREATE PROCEDURE FOO(A VARCHAR(10))
+RETURNS STRING 
+LANGUAGE SQL
+AS
+$$
+CREATE TEMPORARY TABLE1 
+(
+    COL1 VARCHAR(10)
+);
+DECLARE PREFIX DEFAULT 'Test1';
+IF a == 'test1' THEN 
+    INSERT INTO TABLE1(col1) values ( :PREFIX || :A || 'test');
+ELSE
+   DELETE FROM TABLE2 where COL1 = :A;
+END IF;
+DROP TABLE TABLE1;
+$$
     </textarea>
 
     <div style="margin:10px;background:#f0f0f0">
