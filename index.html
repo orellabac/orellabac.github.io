@@ -32,7 +32,8 @@
        $$
     </textarea>
 
-    <div>
+    <div style="margin:10px;background:#f0f0f0">
+      <pre id="res"></pre>
     </div>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -51,6 +52,19 @@ window.onload = function() {
     autofocus: true,
     extraKeys: {"Ctrl-Space": "autocomplete"}
   });
+  
+  window.converted = document.getElementById('res');
+  
+  window.doConvert = function() 
+  {
+      var text = window.editor.getValue();
+      var res = module.trasliterate(text);
+      document.getElementById('res').innerHTML = res.res;
+      if (res.error) {
+        document.getElementById('res').innerHTML += res.error + "\n" + res.location;
+      }
+  }
+  setInterval(window.doConvert,1000);
 };
 </script>
  
